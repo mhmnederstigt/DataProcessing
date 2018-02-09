@@ -52,7 +52,7 @@ def extract_tvseries(dom):
         a = i.find("span", class_="runtime")
         runtime.append(re.findall('\d+', i.find("span", class_="runtime").string)[0])
 
-    # loop over the matrix to fill with the data
+    # fill the matrix to fill the data
     tvseries = [title, rating, genre, actors, runtime]
     return tvseries   
 
