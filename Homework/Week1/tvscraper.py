@@ -31,38 +31,29 @@ def extract_tvseries(dom):
     
     # find all data, organize in arrays per column
     title = []
-    for i in dom.find_all("h3", class_="lister-item-header"):
-        title.append(i.find("a").string)
-
     rating = []
-    for i in dom.find_all("span", class_="value"):
-        rating.append(i.string)
-   
     genre = []
-    for i in dom.find_all("span", class_="genre"):
-        genre.append(i.string.strip())
-    
-    actors = []
-    for actormovie in dom.find_all("div", class_="lister-item-content"):
-            actorind = actormovie.find_all("p")
-            actorind2 = actorind[2].find_all("a")
-            actorlist = []
-            for actor in actorind2:
-                 actorlist.append(actor.string)
-            actorlist2 = actorlist[0] + ', ' + actorlist[1] + ', ' + actorlist[2] + ', ' + actorlist[3] 
-            actors.append(actorlist2)
-
     runtime = [] 
-    for i in dom.find_all("span", class_="runtime"):
-        runtime.append(re.findall('\d+', i.string)[0])
+    actors = []
 
-    for i in runtime:
-        i = int(i)    
+    for i in dom.find_all("div", class_="lister-item-content"):
+        title.append(i.h3.find("a").string)
+        rating.append(i.find("span", class_="value").string)
+        genre.append(i.find("span", class_="genre").string.strip())
+        
+        actorind = i.find_all("p")
+        actorind2 = actorind[2].find_all("a")
+        actorlist = []
+        for actor in actorind2:
+            actorlist.append(actor.string)
+        actorlist2 = actorlist[0] + ', ' + actorlist[1] + ', ' + actorlist[2] + ', ' + actorlist[3] 
+        actors.append(actorlist2)
+
+        a = i.find("span", class_="runtime")
+        runtime.append(re.findall('\d+', i.find("span", class_="runtime").string)[0])
 
     # loop over the matrix to fill with the data
     tvseries = [title, rating, genre, actors, runtime]
-    print(tvseries)
- 
     return tvseries   
 
 def save_csv(outfile, tvseries):
