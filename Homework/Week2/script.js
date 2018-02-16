@@ -210,5 +210,5 @@ window.onload  = function() {
         up += tickRangeY; 
         ctx.stroke();
     }
-
+    }
 }
