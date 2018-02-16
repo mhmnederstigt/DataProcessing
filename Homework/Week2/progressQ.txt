@@ -1,0 +1,18 @@
+
+- display date range somewhere
+
+
+- bronvermelding
+- XML
+- pos of link to script in html?
+
+
+
+- split date into day and month
+- select first day of the month = tick
+- add tick label 'month' to tick
+
+
+Tonight: 
+check camelCase
+check ;
