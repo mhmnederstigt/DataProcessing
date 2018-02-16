@@ -45,7 +45,7 @@ function roundedTickRange(arraydata, tickCount){
  */
 String.prototype.insert = function (index, string) {
   var ind = index < 0 ? this.length + index  :  index;
-  return  this.substring(0, ind) + string + this.substring(ind, this.length);
+  return  this.substring(0, ind) + string + this.substring(ind, this.length)
 };
 
 /**
