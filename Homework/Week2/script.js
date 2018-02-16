@@ -1,3 +1,7 @@
+/**
+ * Homework Week 2 - Milou Nederstigt - 20180216 
+ */
+
 function createTransform(domain, range){
     // domain is a two-element array of the data bounds [domain_min, domain_max]
     // range is a two-element array of the screen bounds [range_min, range_max]
@@ -21,6 +25,10 @@ function createTransform(domain, range){
     }
 }
 
+/**
+ * Calculates an appropriate range for the tick marks given an array with data and an apprioximation of the amount of tick marks 
+ * Taken from: 
+ */
 function roundedTickRange(arraydata, tickCount){
     var range = Math.max(...arraydata)-Math.min(...arraydata);
     var unroundedTickSize = range/(tickCount-1);
@@ -32,7 +40,7 @@ function roundedTickRange(arraydata, tickCount){
 }
 
 /**
- * Insert `what` to string at position `index`.
+ * Inserts `what` to string at position `index`.
  * Taken from: https://stackoverflow.com/questions/4313841/javascript-how-can-i-insert-a-string-at-a-specific-index
  */
 String.prototype.insert = function (index, string) {
@@ -40,167 +48,165 @@ String.prototype.insert = function (index, string) {
   return  this.substring(0, ind) + string + this.substring(ind, this.length);
 };
 
-// var xhttp = new XMLHttpRequest();
-// xhttp.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//        // Typical action to be performed when the document is ready:
-//        document.getElementById("rawdata").innerHTML = xhttp.responseText;
-//     }
-// };
-// xhttp.open("GET", "KNMI_data_2016.txt", true);
-// xhttp.send();
-
+/**
+ * Main
+ */
 // initialize data
-var data = document.getElementById("rawdata").textContent.split("\n");
-array_x = []
-array_y = []
-array_id = []
+window.onload  = function() {
 
-//SET Size of graph and ticks
-width = 600;
-height = 400;
-tickCountX = 12;
-tickCountY = 11;
-unit_X = "day"
-unit_Y = "temp (C)"
-title = "Average temperature in 'de Bilt'"
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           // Typical action to be performed when the document is ready:
+           document.getElementById("rawdata").innerHTML = xhttp.responseText;
+        }
+    };
+    xhttp.open("GET", "KNMI_data_2017.csv", true)
+    xhttp.send()
 
-// split the data into columns and change to appropriate object type 
-for (var i = 0; i < data.length-1; i++) {
-    data[i] = data[i].split(",");
-    data[i][0] = data[i][0].insert(4, '-');
-    data[i][0] = data[i][0].insert(7, '-');
-    array_x[i] = new Date(data[i][0]);
-	array_y[i] = Number(data[i][1])/10;
-	array_id[i] = i;
-    console.log(array_x[i])
-}
+    var data = document.getElementById("rawdata").textContent.split("\n")
+    arrayX = []
+    arrayID = []
+    arrayY = []
 
-// Create functions that convert absolute data to a position on the canvas
-convX = createTransform([Math.min(...array_id), Math.max(...array_id)], [0, width]);
-convY = createTransform([Math.min(...array_y), Math.max(...array_y)], [0, height]);
+    //SET layout variables
+    width = 800
+    height = 400
+    padding = 200
+    tickCountX = 12
+    tickCountY = 11
+    unitX = "month"
+    unitY = "temp (C)"
+    title = "Average temperature in 'de Bilt' - 2017"
 
-//
-// Draw the line graph
-//
+    // split the data into columns and change to appropriate object type 
+    for (var i = 0; i < data.length-1; i++) {
+        data[i] = data[i].split(",")
+        data[i][0] = data[i][0].insert(4, '-')
+        data[i][0] = data[i][0].insert(7, '-')
+        arrayX[i] = new Date(data[i][0])
+    	arrayY[i] = Number(data[i][1])/10
+    	arrayID[i] = i
+    }
 
-// set up canvas
-var canvas = document.getElementById('linegraph'); 
-var ctx = canvas.getContext('2d');
-ctx.translate(100,height+100)
+    // create functions that convert absolute data to a position on the canvas
+    convX = createTransform([Math.min(...arrayID), Math.max(...arrayID)], [0, width])
+    convY = createTransform([Math.min(...arrayY), Math.max(...arrayY)], [0, height])
 
-// draw a container
-ctx.fillStyle = 'rgb(105,151,244)'; 
-ctx.fillRect(-100, 100, width+200, -(height+200)); 
-// // draw the outline of the plot area
-// ctx.fillStyle = 'rgb(105,151,244)'; 
-// ctx.fillRect(0, 0, width, -height); 
+    //
+    // Draw the line graph
+    //
 
-// draw title
-ctx.fillStyle = 'rgb(0,0,0)'; 
-ctx.textAlign="center";
-ctx.font = "20px Arial";
-ctx.fillText(title, width/2, -height-40);
-ctx.font = "12px Arial";
+    // set up canvas
+    var canvas = document.getElementById('linegraph') 
+    var ctx = canvas.getContext('2d')
+    ctx.translate(padding,height+padding)
 
-// draw line graph
-ctx.lineWidth = 2;
-ctx.beginPath();
-ctx.moveTo(convX(array_id[0]), -convY(array_y[0]))
-for (var i = 1; i < array_id.length-1; i  = i + 4){
-    ctx.lineTo(convX(array_id[i]), -convY(array_y[i]))
-    ctx.stroke();
-}
+    // draw a container
+    ctx.fillStyle = 'rgb(242,210,142)' 
+    ctx.fillRect(-padding, padding, width+2*padding, -(height+2*padding)) 
 
-// draw axes
-    // y
-    tickRangeY = roundedTickRange(array_y, tickCountY);
-    tickNumbersY = Math.ceil((Math.max(...array_y)-Math.min(...array_y))/tickRangeY);  // this is an update of TickCount with the actual amount of ticks that will be displayed
-    tickNumberUnderAxis = tickNumbersY - (Math.ceil((Math.max(...array_y))/tickRangeY))
+    // draw title
+    ctx.fillStyle = 'rgb(0,0,0)'
+    ctx.textAlign="center"
+    ctx.font = "20px Arial"
+    ctx.fillText(title, width/2, -height-padding/2)
+    ctx.font = "12px Arial"
 
-    ctx.beginPath();
-    ctx.moveTo(-10,-convY(-tickNumberUnderAxis*tickRangeY));
-    tickNumbersAboveAxis = Math.ceil((Math.max(...array_y))/tickRangeY);
-    ctx.lineTo(-10, -convY(tickNumbersAboveAxis*tickRangeY));
-    ctx.stroke();
+    // draw line graph
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(convX(arrayID[0]), -convY(arrayY[0]))
+    for (var i = 1; i < arrayID.length-1; i++){
+        ctx.lineTo(convX(arrayID[i]), -convY(arrayY[i]))
+        ctx.stroke()
+    }
 
-    ctx.save();
-    ctx.rotate(3 * Math.PI / 2);
-    ctx.fillStyle = 'rgb(0,0,0)';
-    ctx.textAlign = "right" 
-    ctx.fillText(unit_Y, height, -60);
-    ctx.restore();
+    // draw axes
+        // y
+        tickRangeY = roundedTickRange(arrayY, tickCountY)
+        tickNumbersY = Math.ceil((Math.max(...arrayY)-Math.min(...arrayY))/tickRangeY);  // this is an update of TickCount with the actual amount of ticks that will be displayed
+        tickNumberUnderAxis = tickNumbersY - (Math.ceil((Math.max(...arrayY))/tickRangeY))
+        beginAxis = -convY(-tickNumberUnderAxis*tickRangeY)
+        tickNumbersAboveAxis = Math.ceil((Math.max(...arrayY))/tickRangeY)
+        endAxis = -convY(tickNumbersAboveAxis*tickRangeY)
+
+        ctx.beginPath();
+        ctx.moveTo(-10,beginAxis)
+        ctx.lineTo(-10, endAxis)
+        ctx.stroke();
+
+        ctx.save()
+        ctx.rotate(3 * Math.PI / 2)
+        ctx.fillStyle = 'rgb(0,0,0)'
+        ctx.textAlign = "right" 
+        ctx.fillText(unitY, height, -60)
+        ctx.restore()
+
+        // x
+        tickRangeX = 30
+        tickNumbersX = Math.ceil((Math.max(...arrayID)-Math.min(...arrayID))/tickRangeX); // this is an update of TickCount with the actual amount of ticks that will be displayed
+        posaxisx = -convY(-tickNumberUnderAxis*tickRangeY)
+        ctx.beginPath()
+        ctx.moveTo(0,posaxisx)
+        ctx.lineTo(convX(tickNumbersX*tickRangeX),posaxisx)
+        ctx.stroke()
+
+        ctx.fillStyle = 'rgb(0,0,0)'
+        ctx.textAlign = "right" 
+        ctx.fillText(unitX, convX(tickNumbersX*tickRangeX), 90)
+
+        // 0 
+        ctx.beginPath()
+        ctx.setLineDash([5, 15])
+        ctx.moveTo(0,0)
+        ctx.lineTo(convX(tickNumbersX*tickRangeX),0)
+        ctx.stroke()
 
 
-    // x
-    tickRangeX = roundedTickRange(array_id, tickCountX)
-    tickNumbersX = Math.ceil((Math.max(...array_id)-Math.min(...array_id))/tickRangeX); // this is an update of TickCount with the actual amount of ticks that will be displayed
-    posaxisx = -convY(-tickNumberUnderAxis*tickRangeY);
-    ctx.beginPath();
-    ctx.moveTo(0,posaxisx);
-    ctx.lineTo(convX(tickNumbersX*tickRangeX),posaxisx);
-    ctx.stroke();
-
-    ctx.fillStyle = 'rgb(0,0,0)';
-    ctx.textAlign = "right" 
-    ctx.fillText(unit_X, width, 90);
-
-    // 0 
-    ctx.beginPath();
-    ctx.setLineDash([5, 15]);
-    ctx.moveTo(0,0);
-    ctx.lineTo(convX(tickNumbersX*tickRangeX),0);
-    ctx.stroke();
-
-
-// x-axis tick marks and labels
-// needed for date conversion
-var month = [];
-month[0] = "January";
-month[1] = "February";
-month[2] = "March";
-month[3] = "April";
-month[4] = "May";
-month[5] = "June";
-month[6] = "July";
-month[7] = "August";
-month[8] = "September";
-month[9] = "October";
-month[10] = "November";
-month[11] = "December";
-
-right = 0;
-for (var i = 0; i <= tickNumbersX; i++) {
-    ctx.moveTo(convX(right), posaxisx);
-    ctx.lineTo(convX(right), posaxisx+5);
+    // x-axis tick marks and labels
     
-    // draw labels
-    ctx.save();
-    ctx.rotate(3 * Math.PI / 2);
-    ctx.fillStyle = 'rgb(0,0,0)'; 
-    ctx.textAlign = "left";
-    ctx.fillText(right, -posaxisx-40, convX(right)); // x and y coordinates are reversed since the reference point changed position
-    ctx.restore();
+    // needed for date conversion
+    month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
-    //month[array_x[right].getMonth()]
-    
-    right += tickRangeX; 
-    ctx.stroke();
+    right = tickRangeX;
+
+    ctx.moveTo(0, posaxisx);
+    ctx.lineTo(0, posaxisx+5);
+
+    for (var i = 1; i <= tickNumbersX-1; i++) {
+        ctx.moveTo(convX(right), posaxisx);
+        ctx.lineTo(convX(right), posaxisx+5);
+        
+        // draw labels
+        ctx.save();
+        ctx.rotate(3 * Math.PI / 2);
+        ctx.fillStyle = 'rgb(0,0,0)'; 
+        ctx.textAlign = "right";
+        ctx.fillText(month[arrayX[right].getMonth()], -posaxisx-20, convX(right)-convX(tickRangeX/2)); // x and y coordinates are reversed since the reference point changed position
+        ctx.restore();
+
+        right += tickRangeX; 
+        ctx.stroke();
+    }
+
+    ctx.moveTo(convX(tickNumbersX*tickRangeX), posaxisx);
+    ctx.lineTo(convX(tickNumbersX*tickRangeX), posaxisx+5);
+
+    // y-axis tick marks and labels
+    up = -(tickNumberUnderAxis)*tickRangeY
+
+    for (var i = 0; i <= tickNumbersY; i++) {
+        ctx.moveTo(-10, -convY(up));
+        ctx.lineTo(-15, -convY(up));
+        
+        // draw labels
+        ctx.fillStyle = 'rgb(0,0,0)'; 
+        ctx.textAlign="right";
+        ctx.fillText(up, -20 , -convY(up));
+
+        up += tickRangeY; 
+        ctx.stroke();
 }
 
-// y-axis tick marks and labels
-up = -(tickNumberUnderAxis)*tickRangeY
-
-for (var i = 0; i <= tickNumbersY; i++) {
-    ctx.moveTo(-10, -convY(up));
-    ctx.lineTo(-15, -convY(up));
-    
-    // draw labels
-    ctx.fillStyle = 'rgb(0,0,0)'; 
-    ctx.textAlign="right";
-    ctx.fillText(up, -20 , -convY(up));
-
-    up += tickRangeY; 
-    ctx.stroke();
 }
-
