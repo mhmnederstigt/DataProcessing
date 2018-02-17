@@ -55,16 +55,15 @@ String.prototype.insert = function (index, string) {
 window.onload  = function() {
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "KNMI_data_2017.csv", true)
-    xhttp.send()
-
+    xhttp.open("GET", "KNMI_data_2017.csv", true);
+    xhttp.send();
 
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
            // Typical action to be performed when the document is ready:
            document.getElementById("rawdata").innerHTML = xhttp.responseText;
-        }
-    }
+        
+    
    
     var data = document.getElementById("rawdata").textContent.split("\n")
     arrayX = []
@@ -210,5 +209,6 @@ window.onload  = function() {
         up += tickRangeY; 
         ctx.stroke();
     }
-
+    }
+    }
 }
