@@ -10,6 +10,7 @@ var margin = {top: 50, right: 100, bottom: 30, left: 100},
     height = 400 - margin.top - margin.bottom;
 
 d3.json("renewable_energy_europe.json", function(error, data) {
+  console.log(data)
 
   var x = d3.scale.ordinal()
       .rangeRoundBands([0, width], .1);
@@ -41,13 +42,8 @@ d3.json("renewable_energy_europe.json", function(error, data) {
   // convert Value to type number
   for (i = 0, len = data.length; i < len; i++) { 
     data[i]['Value'] = Number(data[i]['Value'])
-  }
+  }    
 
-  // sort list of countries(objects) in ascending order by renewables value
-  data = data.sort(function(a, b){
-    return a.Value-b.Value
-  })
-  
   svg.call(tip);
 
   x.domain(data.map(function(d) { return d.LOCATION; }));
@@ -69,7 +65,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
 
   svg.selectAll(".bar")
       .data(data)
-      .enter().append("rect")
+    .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.LOCATION); })
       .attr("width", x.rangeBand())
