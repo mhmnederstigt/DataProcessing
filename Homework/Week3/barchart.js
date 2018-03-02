@@ -5,12 +5,15 @@
 
 window.onload = function() {
 
-var margin = {top: 20, right: 30, bottom: 30, left: 40},
-    width  = 800 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
-
+var margin = {top: 50, right: 100, bottom: 30, left: 100},
+    width  = 900 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 d3.json("renewable_energy_europe.json", function(error, data) {
+//  for i in range(0, len(data)){
+//    d.value = type(d.Value)
+//   }
+
   var x = d3.scale.ordinal()
       .rangeRoundBands([0, width], .1);
 
@@ -23,7 +26,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
 
   var yAxis = d3.svg.axis()
       .scale(y)
-      .orient("left")
+      .orient("left");
 
   var tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -41,7 +44,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
   svg.call(tip);
 
   x.domain(data.map(function(d) { return d.LOCATION; }));
-  y.domain([0, d3.max(data, function(d) { return d.Value;})]);
+  y.domain([0, d3.max(data, function(d) { return Number(d.Value);})]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -53,7 +56,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
       .call(yAxis)
     .append("text")
       .attr("dy", "-5px")
-      .attr("dx", "-25px")
+      .attr("dx", "-30px")
       .style("text-anchor", "end")
       .text("Percentage");
 
@@ -69,11 +72,6 @@ d3.json("renewable_energy_europe.json", function(error, data) {
       .on('mouseout', tip.hide)
 
 });
-
-function type(d) {
-  d.Value = +d.Value;
-  return d;
-}
 
 
 }
