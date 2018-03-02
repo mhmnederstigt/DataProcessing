@@ -58,6 +58,9 @@ d3.json("renewable_energy_europe.json", function(error, data) {
       .style("text-anchor", "end")
       .text("Percentage");
 
+//for i in range(0, 10):
+//  console.log(data[i]['Value'])
+
   svg.selectAll(".bar")
      .data(data)    
 //       .data(data.sort(function(a, b){return b-a}))
