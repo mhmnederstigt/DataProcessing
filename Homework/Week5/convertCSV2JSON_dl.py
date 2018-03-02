@@ -4,7 +4,7 @@
 
 """
 This script outputs a JSON file with the content of a csv.
-Resulting in: 
+Converts a CSV file with three variables to a JSON file containing a dictioniary with three lists (one per variable).
 """
 
 import csv
@@ -25,20 +25,18 @@ else:
 
 	with open(inputfile) as csvfile:
 		reader = csv.DictReader(csvfile)
-		key1 = 'Rain'
-		key2 = 'Month'
-		key3 = '' 
 		x = []
 		y = []
 		z = []
-
 		dl = []
 
+
 		for row in reader:
-			x.append(row[key1])
-			y.append(row[key2])	
-		
-		dl.append({key1: x, key2: y, key3: z})
+			x.append(row[list(row.keys())[0]])
+			y.append(row[list(row.keys())[1]])
+			y.append(row[list(row.keys())[2]])
+
+		dl.append({list(row.keys())[0]: x, list(row.keys())[1]: y, list(row.keys())[2]: z})
 					
 	with open(outputfile, 'w') as output:
    		json.dump(dl, output)

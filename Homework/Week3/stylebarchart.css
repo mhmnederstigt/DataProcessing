@@ -11,11 +11,11 @@ body {
 }
 
 .bar {
-  fill: GoldenRod;
+  fill: #f7131f;
 }
 
 .bar:hover {
-  fill: Gold;
+  fill: #ff2d38;
 }
 
 .x.axis path {
