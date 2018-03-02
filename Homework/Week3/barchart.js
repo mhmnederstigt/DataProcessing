@@ -10,9 +10,7 @@ var margin = {top: 50, right: 100, bottom: 30, left: 100},
     height = 400 - margin.top - margin.bottom;
 
 d3.json("renewable_energy_europe.json", function(error, data) {
-//  for i in range(0, len(data)){
-//    d.value = type(d.Value)
-//   }
+  console.log(data)
 
   var x = d3.scale.ordinal()
       .rangeRoundBands([0, width], .1);
@@ -26,7 +24,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
 
   var yAxis = d3.svg.axis()
       .scale(y)
-      .orient("left");
+      .orient("left")
 
   var tip = d3.tip()
     .attr('class', 'd3-tip')
@@ -61,7 +59,8 @@ d3.json("renewable_energy_europe.json", function(error, data) {
       .text("Percentage");
 
   svg.selectAll(".bar")
-      .data(data)
+     .data(data)    
+//       .data(data.sort(function(a, b){return b-a}))
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", function(d) { return x(d.LOCATION); })
