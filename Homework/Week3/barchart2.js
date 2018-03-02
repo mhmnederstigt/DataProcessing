@@ -6,7 +6,7 @@
 window.onload = function() {
 
 var margin = {top: 20, right: 30, bottom: 30, left: 40},
-    width  = 800 - margin.left - margin.right,
+    width  = 500 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
 
@@ -29,7 +29,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-      return "<strong>Renewables:</strong> <span style='color:red'>" + d.Value +"%</span>";
+      return "<strong>Percentage:</strong> <span style='color:red'>" + d.Value +"</span>";
     })
 
   var svg = d3.select("body").append("svg")
