@@ -1,5 +1,6 @@
-// 
-//
+// Barchart Assignment
+//Name: Milou Nederstigt
+// Student number: 11022914// 
 // code taken from: http://bl.ocks.org/Caged/6476579
 
 window.onload = function() {
@@ -31,7 +32,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
       return "<strong>Percentage:</strong> <span style='color:red'>" + d.Value +"</span>";
     })
 
-  var svg = d3.select(".container").append("svg")
+  var svg = d3.select("body").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
