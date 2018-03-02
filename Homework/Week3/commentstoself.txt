@@ -1,0 +1,4 @@
+var names in script?
+center align?
+axis?
+ask about readme
