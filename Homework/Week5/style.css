@@ -14,3 +14,21 @@ body{
   fill: none;
   stroke: steelblue;
   stroke-width: 1.5
+
+}
+
+.m {
+  padding: 12px 28px;
+  border-radius: 8px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  background-color: white; 
+  border: 2px solid #3366cc;
+  color: #3366cc;
+}
+
+.m:hover {
+    background-color: #3366cc; /* Green */
+    border: 2px solid #3366cc;
+    color: white;
+}

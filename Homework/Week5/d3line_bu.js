@@ -22,20 +22,17 @@ var line = d3.line()
 
 d3.selectAll(".m")
 				.on("click", function() {
-					var version = this.getAttribute("value");
+					var date = this.getAttribute("value");
 
-					if(version == "2016"){
+					if(date == "2016"){
 						dataref = "KNMI_20160231.tsv";
-					}else if(version == "2017"){
+					}else if(date == "2017"){
 						dataref = "KNMI_20170231.tsv";
-					}else if(version == "2018"){
+					}else if(date == "2018"){
 						dataref = "KNMI_20180231.tsv";
 					}else{
 						dataref = "KNMI_20160231.tsv";
 					}
-
-				svg.selectAll("*").remove();
-				g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 				d3.tsv(dataref, type, function(error, data) {
 				  if (error) throw error;
@@ -57,6 +54,12 @@ d3.selectAll(".m")
 				  ]);
 
 				  z.domain(cities.map(function(c) { return c.id; }));
+
+				  var svg = d3.select("body").append("svg")
+      					.attr("width", width + margin.left + margin.right)
+      					.attr("height", height + margin.top + margin.bottom)
+    				.append("g")
+      					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 				  g.append("g")
 				      .attr("class", "axis axis--x")

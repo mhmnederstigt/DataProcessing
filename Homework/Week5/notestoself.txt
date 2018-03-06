@@ -1,1 +1,3 @@
 - strip off header of csv in CSV2JSON.py
+
+- problem dates reading json
