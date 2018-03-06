@@ -6,7 +6,7 @@
 window.onload = function() {
 
 var margin = {top: 50, right: 100, bottom: 30, left: 100},
-    width  = 900 - margin.left - margin.right,
+    width  = 800 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
 
 d3.json("renewable_energy_europe.json", function(error, data) {
