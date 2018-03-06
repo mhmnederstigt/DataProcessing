@@ -1,0 +1,16 @@
+body{
+	text-align: center;
+}
+.container {
+  text-align: center;
+  font: 10px sans-serif;
+}
+
+.axis--x path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5
