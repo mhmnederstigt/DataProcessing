@@ -29,7 +29,7 @@ d3.json("renewable_energy_europe.json", function(error, data) {
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(function(d) {
-      return "<strong>Renewables:</strong> <span style='color:red'>" + d.Value +"%</span>";
+      return "<strong>Renewables:</strong> <span style='color:#3366cc'>" + d.Value +"%</span>";
     })
 
   var svg = d3.select("body").append("svg")
