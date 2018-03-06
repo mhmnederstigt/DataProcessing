@@ -4,8 +4,9 @@ body {
 		color: black;
 		line-height: 14pt;
 		padding: 5pt;
+		text-align: center;
 	}
-
+	
 h1 {
 
 		font: 14pt Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -20,7 +21,6 @@ h2 {
 a {
 		text-decoration: none;
 	}
-
 a:link, a:visited {
   color: #8094d6;
 }
