@@ -23,12 +23,13 @@ body{
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   background-color: white; 
-  border: 2px solid #3366cc;
-  color: #3366cc;
+  border: 2px solid #A9A9A9;
+  color: #A9A9A9;
+  margin-top: 25px
 }
 
 .m:hover {
-    background-color: #3366cc; /* Green */
-    border: 2px solid #3366cc;
+    background-color: #A9A9A9; 
+    border: 2px solid #A9A9A9;
     color: white;
 }

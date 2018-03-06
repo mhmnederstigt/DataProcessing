@@ -9,11 +9,11 @@ window.onload = function() {
 
     googleColors =  ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
 
-var parseTime = d3.timeParse("%Y%m%d");
+	var parseTime = d3.timeParse("%Y%m%d");
 
-var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(googleColors)
+	var x = d3.scaleTime().range([0, width]),
+    	y = d3.scaleLinear().range([height, 0]),
+    	z = d3.scaleOrdinal(googleColors)
 
 var line = d3.line()
     .curve(d3.curveBasis)
