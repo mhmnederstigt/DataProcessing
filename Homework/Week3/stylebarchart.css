@@ -11,11 +11,11 @@ body {
 }
 
 .bar {
-  fill: #f7131f;
+  fill: orangered;
 }
 
 .bar:hover {
-  fill: #fc4e57;
+  fill: orange;
 }
 
 .x.axis path {
