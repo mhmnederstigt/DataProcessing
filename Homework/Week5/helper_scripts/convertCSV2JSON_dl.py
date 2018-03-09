@@ -31,14 +31,13 @@ else:
 		a = []
 		dl = []
 
-
 		for row in reader:
 			x.append(row[list(row.keys())[0]])
 			y.append(row[list(row.keys())[1]])
 			z.append(row[list(row.keys())[2]])
 			a.append(row[list(row.keys())[3]])
 
-		dl.append({list(row.keys())[0]: x, list(row.keys())[1]: y, list(row.keys())[2]: z, list(row.keys())[3]: z})
+		dl.append({list(row.keys())[0]: x, list(row.keys())[1]: y, list(row.keys())[2]: z, list(row.keys())[3]: a})
 					
 	with open(outputfile, 'w') as output:
    		json.dump(dl, output)

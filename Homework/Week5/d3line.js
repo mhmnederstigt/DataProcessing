@@ -35,8 +35,7 @@ window.onload = function() {
 		var cats = [];
 		for (i = 0, len = 4; i < len; i++) { 
 			var key = d3.keys(data)[i];
-			console.log(key);
-			
+				
 			if (key != "date") {
 				cats.push({"id": key, "values": []})
 				for (j = 0,  n = data[key].length; j < n; j++) {
@@ -52,7 +51,7 @@ window.onload = function() {
 				    d3.max(cats, function(c) { return d3.max(c.values, function(d) { return d.windspeed; }); })
 				  ]);
 
-		z.domain(cats.map(function(c) {console.log(c.id); return c.id; }));
+		z.domain(cats.map(function(c) { return c.id; }));
 
 		g.append("g")
 		  .attr("class", "axis axis--x")
