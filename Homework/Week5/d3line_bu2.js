@@ -18,14 +18,14 @@ window.onload = function() {
 var line = d3.line()
     .curve(d3.curveBasis)
     .x(function(d) { return x(d.date); })
-    .y(function(d) { console.log(d.windspeed); return y(d.windspeed); });
+    .y(function(d) { return y(d.windspeed); });
 
 d3.selectAll(".m")
 				.on("click", function() {
 					var version = this.getAttribute("value");
 
 					if(version == "2016"){
-						dataref = "KNMI_20170231.tsv";
+						dataref = "KNMI_20160231.tsv";
 					}else if(version == "2017"){
 						dataref = "KNMI_20170231.tsv";
 					}else if(version == "2018"){
@@ -40,8 +40,6 @@ d3.selectAll(".m")
 				d3.tsv(dataref, type, function(error, data) {
 				  if (error) throw error;
 
-				  console.log(data);
-
 				  var cities = data.columns.slice(1).map(function(id) {
 				    return {
 				      id: id,
@@ -50,8 +48,6 @@ d3.selectAll(".m")
 				      })
 				    };
 				  });
-
-				  console.log(cities)
 
 				  x.domain(d3.extent(data, function(d) { return d.date; }));
 
@@ -93,13 +89,16 @@ d3.selectAll(".m")
 				      .attr("dy", "0.35em")
 				      .style("font", "10px sans-serif")
 				      .text(function(d) { return d.id; });
+		  
 
-				      		   
 				});
+
+		
+				
+
 			});
 
 function type(d, _, columns) {
-	console.log(_)
   d.date = parseTime(d.date);
   for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
   return d;

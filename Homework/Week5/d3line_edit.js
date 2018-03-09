@@ -52,6 +52,7 @@ window.onload = function() {
 
 		z.domain(cats.map(function(c) {console.log(c.id); return c.id; }));
 
+
 		g.append("g")
 		  .attr("class", "axis axis--x")
 		  .attr("transform", "translate(0," + height + ")")

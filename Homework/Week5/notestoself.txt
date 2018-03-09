@@ -2,4 +2,13 @@
 
 - problem dates reading json
 
-- nice header for every assignment
+- crosshair
+
+- keep axes the same: load all data at once?
+- if so, a slider instead of buttons?
+
+First, make the json work (dates)
+1. list with three dataset,  all loaded (can be 1 json, or 3 jsons loaded in one array)
+2. buttons that toggle between elements of that list (but axes based on all three?)
+
+- interactivity
