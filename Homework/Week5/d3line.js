@@ -1,4 +1,6 @@
+// Milou Nederstigt -  2018-03-09 - D3 Line Chart
 // example taken from: https://bl.ocks.org/mbostock/3884955
+// and https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91
 
 window.onload = function() {
 	// specify some variables
