@@ -53,7 +53,7 @@ window.onload = function() {
     .style("padding",'12px')
     .style("border-radius",'12px')
     .html(function(d) {
-      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</span>";
+      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</br> Population: " + d.population + "</span>";
     })
 
   d3.csv("data/HPI_2016.csv", function(error, data) {
@@ -115,11 +115,32 @@ window.onload = function() {
         .style("fill", color);
 
     legend.append("text")
-        .attr("x", width - 24)
+        .attr("x", width - 30)
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function(d) { return d; });
+
+    var legendPop = svg.selectAll(".legendPop")
+        .data([400000, 40000300, 80000300, 300003000])
+      .enter().append("g")
+        .attr("class", "legendPop")
+        
+    legendPop.append("circle")
+        .attr("cx", width - circleSize(300003000))
+        .attr("cy", function(d) {return 350 - circleSize(d); }) // how to not hard code this?
+        .attr("r", function(d) {return circleSize(d); })
+        .style("fill", "none")
+        .style("stroke", "#000")
+
+    legendPop.append("text")
+        .attr("x", width - 30)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { return d; });
+
+
 
       });
 };

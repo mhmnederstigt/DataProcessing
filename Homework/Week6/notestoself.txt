@@ -10,3 +10,5 @@
 - simple tooltip example
 
 - googleColor - how to?  
+
+- legend week 4- also bubblesize - mooie manier om data voor circle legend te berekenen?
