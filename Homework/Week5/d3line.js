@@ -95,7 +95,7 @@ var mouseG = svg.append("g")
       .attr("class", "mouse-line")
       .style("stroke", "black")
       .style("stroke-width", "1px")
-      .style("opacity", "0");
+      .style("opacity", "0"); // initially invisible
       
     var lines = document.getElementsByClassName('line');
 
@@ -145,18 +145,18 @@ var mouseG = svg.append("g")
             return d;
           });
           
-        d3.selectAll(".mouse-per-line")
+        d3.selectAll(".mouse-per-line") // here it goes wrong
           .attr("transform", function(d, i) {
             console.log(width/mouse[0])
             var xDate = x.invert(mouse[0]),
-                bisect = d3.bisector(function(d) { return d.date; }).right;
+                bisect = d3.bisector(function(d) { return d.date; }).right; // dichtsbijzijnde datapunt (Date)
                 idx = bisect(d.values, xDate);
             
             var beginning = 0,
                 end = lines[i].getTotalLength(),
                 target = null;
 
-            while (true){
+            while (true){  // use condition, if found data point stop searching
               target = Math.floor((beginning + end) / 2);
               pos = lines[i].getPointAtLength(target);
               if ((target === end || target === beginning) && pos.x !== mouse[0]) {
@@ -175,7 +175,9 @@ var mouseG = svg.append("g")
 
 })
 
-
+// how it should be done
+// 4 lines, plus circles, opacity 0, on mousemove, make visible, mousemove --> determine location
+// rect moet over álles, ook crosshair lijnen
 
 
 //end

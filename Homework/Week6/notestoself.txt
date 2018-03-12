@@ -4,3 +4,5 @@
 - let ipv var in for loop (var ook nog beschikbaar buiten for loop, let alleen binnen loop)
 
 - "use strict" (typ boven code)
+
+- update data instead of draw from scratch
