@@ -1,11 +1,29 @@
-window.onload = function() {    
-  var svg = d3.select("svg"),
-        margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom,
-        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+/* 
+Scatterplot assignment
+Student name: Milou Nederstigt
+Student number: 11022914
+Date: 20180312
 
-  var x = d3.scale.linear()
+References: 
+http://bl.ocks.org/weiglemc/6185069
+
+*/
+
+window.onload = function() {  
+  function colorGoogle(n) {
+  var colores_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
+  return colores_g[n % colores_g.length];
+  }
+
+  function circleSize(population) {
+    return (Math.sqrt(population/3.14)/250+1);
+  }
+
+  var margin = {top: 20, right: 20, bottom: 30, left: 40},
+      width = 960 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+  var x = d3.scale.log()
       .range([0, width]);
 
   var y = d3.scale.linear()
@@ -21,16 +39,34 @@ window.onload = function() {
       .scale(y)
       .orient("left");
 
-  d3.tsv("data/data.tsv", function(error, data) {
+  var svg = d3.select("body").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var tip = d3.tip()
+    .attr('class', 'tooltip')
+    .offset([-10, 0])
+    .style("background",'#BCC5F7')
+    .style("padding",'12px')
+    .style("border-radius",'12px')
+    .html(function(d) {
+      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</span>";
+    })
+
+  d3.csv("data/HPI_2016.csv", function(error, data) {
     if (error) throw error;
 
     data.forEach(function(d) {
-      d.sepalLength = +d.sepalLength;
-      d.sepalWidth = +d.sepalWidth;
+      d.lifeExp = +d.lifeExp;
+      d.GDPpcap = +d.GDPpcap;
     });
 
-    x.domain(d3.extent(data, function(d) { return d.sepalWidth; })).nice();
-    y.domain(d3.extent(data, function(d) { return d.sepalLength; })).nice();
+    svg.call(tip);
+
+    x.domain(d3.extent(data, function(d) { return d.GDPpcap; })).nice();
+    y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice();
 
     svg.append("g")
         .attr("class", "x axis")
@@ -41,7 +77,7 @@ window.onload = function() {
         .attr("x", width)
         .attr("y", -6)
         .style("text-anchor", "end")
-        .text("Sepal Width (cm)");
+        .text("GDP per capita ($)");
 
     svg.append("g")
         .attr("class", "y axis")
@@ -52,16 +88,37 @@ window.onload = function() {
         .attr("y", 6)
         .attr("dy", ".71em")
         .style("text-anchor", "end")
-        .text("Sepal Length (cm)")
+        .text("Average life expectancy")
 
     svg.selectAll(".dot")
         .data(data)
       .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", 3.5)
-        .attr("cx", function(d) { return x(d.sepalWidth); })
-        .attr("cy", function(d) { return y(d.sepalLength); })
-        .style("fill", function(d) { return color(d.species); });
+        .attr("r", function(d) { return circleSize(d.population)}) // add a proper function here
+        .attr("cx", function(d) { return x(d.GDPpcap); })
+        .attr("cy", function(d) { return y(d.lifeExp); })
+        .style("fill", function(d) { return color(d.region); })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
+
+    var legend = svg.selectAll(".legend")
+        .data(color.domain())
+      .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+    legend.append("rect")
+        .attr("x", width - 18)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", color);
+
+    legend.append("text")
+        .attr("x", width - 24)
+        .attr("y", 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "end")
+        .text(function(d) { return d; });
 
       });
 };

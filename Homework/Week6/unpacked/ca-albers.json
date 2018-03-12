@@ -1,0 +1,2 @@
+
+C:\Users\Milou\Documents\UNI\UvA\FPS Jaar 2\Programming\Data processing\GitHub\DataProcessing\Homework\Week6\unpacked>  "C:\Users\Milou\AppData\Roaming\npm\\node.exe"  "C:\Users\Milou\AppData\Roaming\npm\\node_modules\d3-geo-projection\bin\geoproject" 'd3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0]).fitSize([960, 960], d)'

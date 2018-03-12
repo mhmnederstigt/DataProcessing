@@ -5,10 +5,23 @@ Student number: 11022914
 Date: 20180312
 
 References: 
+http://bl.ocks.org/weiglemc/6185069
 
 */
 
 window.onload = function() {  
+  function colorGoogle(n) {
+  var colores_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
+  return colores_g[n % colores_g.length];
+  }
+
+  function circleSize(population) {
+    return (Math.sqrt(population/3.14)/250+1);
+  }
+
+  width2 = +svg.attr("width")
+  console.log(width2);
+
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = 960 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
@@ -80,12 +93,11 @@ window.onload = function() {
         .style("text-anchor", "end")
         .text("Average life expectancy")
 
-
     svg.selectAll(".dot")
         .data(data)
       .enter().append("circle")
         .attr("class", "dot")
-        .attr("r", function(d) { return (Math.sqrt((d.population/75000)/3.14)+0.5);}) // add a proper function here
+        .attr("r", function(d) { return circleSize(d.population)}) // add a proper function here
         .attr("cx", function(d) { return x(d.GDPpcap); })
         .attr("cy", function(d) { return y(d.lifeExp); })
         .style("fill", function(d) { return color(d.region); })
