@@ -8,8 +8,13 @@
 }
 
 .dot {
+  opacity: 0.8  ;
 	stroke: #000;
-	stroke-width: 1;
+	stroke-width: 0;
+}
+
+.dot:hover {
+  opacity: 1;
 }
 
 .legend {

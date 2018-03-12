@@ -6,3 +6,5 @@
 - "use strict" (typ boven code)
 
 - update data instead of draw from scratch
+
+- simple tooltip example

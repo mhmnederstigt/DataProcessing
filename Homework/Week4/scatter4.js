@@ -1,3 +1,13 @@
+/* 
+Scatterplot assignment
+Student name: Milou Nederstigt
+Student number: 11022914
+Date: 20180312
+
+References: 
+
+*/
+
 window.onload = function() {  
   var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = 960 - margin.left - margin.right,
@@ -28,13 +38,15 @@ window.onload = function() {
   var tip = d3.tip()
     .attr('class', 'tooltip')
     .offset([-10, 0])
+    .style("background",'#BCC5F7')
+    .style("padding",'12px')
+    .style("border-radius",'12px')
     .html(function(d) {
-      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP:" + d.GDPpcap + "</br> Life Exp.:" + d.lifeExp + "</span>";
+      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</span>";
     })
 
   d3.csv("data/HPI_2016.csv", function(error, data) {
     if (error) throw error;
-
 
     data.forEach(function(d) {
       d.lifeExp = +d.lifeExp;
@@ -68,6 +80,7 @@ window.onload = function() {
         .style("text-anchor", "end")
         .text("Average life expectancy")
 
+
     svg.selectAll(".dot")
         .data(data)
       .enter().append("circle")
@@ -78,7 +91,6 @@ window.onload = function() {
         .style("fill", function(d) { return color(d.region); })
         .on('mouseover', tip.show)
         .on('mouseout', tip.hide);
-
 
     var legend = svg.selectAll(".legend")
         .data(color.domain())
