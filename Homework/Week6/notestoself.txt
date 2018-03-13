@@ -18,3 +18,9 @@
 - add crosshair to scatterplot
 
 http://plnkr.co/edit/3a9emCPAEcVlR1o7YMg3?p=preview
+
+- different layout population numbers
+
+- order of bubbles - front or back
+
+- how to merge data sheets?
