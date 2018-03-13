@@ -122,14 +122,14 @@ window.onload = function() {
         .text(function(d) { return d; });
 
     var legendPop = svg.selectAll(".legendPop")
-        .data([400000, 40000300, 80000300, 300003000])
+        .data([0.5E8, 1.5E8, 4.5E8])
       .enter().append("g")
         .attr("class", "legendPop")
-        
+           
     legendPop.append("circle")
         .attr("cx", width - circleSize(300003000))
-        .attr("cy", function(d) {return 350 - circleSize(d); }) // how to not hard code this?
-        .attr("r", function(d) {return circleSize(d); })
+        .attr("cy", function(d) {return 400-circleSize(d); }) // how to not hard code this?
+        .attr("r", function(d) {return  circleSize(d); })
         .style("fill", "none")
         .style("stroke", "#000")
 
@@ -139,6 +139,15 @@ window.onload = function() {
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function(d) { return d; });
+
+    legendPop.append("path") // this is the black vertical line to follow mouse
+      .attr("class", "line")
+      .attr("width", 100)
+      .style("stroke", "black")
+      .style("stroke-width", "1px");
+
+    
+
 
 
 

@@ -12,3 +12,9 @@
 - googleColor - how to?  
 
 - legend week 4- also bubblesize - mooie manier om data voor circle legend te berekenen?
+
+- add comments to scatterplot
+
+- add crosshair to scatterplot
+
+http://plnkr.co/edit/3a9emCPAEcVlR1o7YMg3?p=preview
