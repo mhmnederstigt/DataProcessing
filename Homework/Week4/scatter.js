@@ -30,7 +30,6 @@ window.onload = function() {
       .range([height, 0]);
 
   var color = d3.scale.category10();
-  console.log(color);
 
   var xAxis = d3.svg.axis()
       .scale(x)
@@ -59,7 +58,9 @@ window.onload = function() {
   d3.csv("data/HPI_2016.csv", function(error, data) {
     if (error) throw error;
 
+    
     data.forEach(function(d) {
+      d.population = +d.population;
       d.lifeExp = +d.lifeExp;
       d.GDPpcap = +d.GDPpcap;
     });
@@ -90,6 +91,7 @@ window.onload = function() {
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .text("Average life expectancy")
+
 
     svg.selectAll(".dot")
         .data(data)
