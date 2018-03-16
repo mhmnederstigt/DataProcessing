@@ -50,7 +50,7 @@ d3.csv("linkedGraphData.csv", function(error, data) {
               var newcountry = d3.select(this).property('value')
               console.log(newcountry)
               // should be changed to update
-              updateSpider(dataforspider[newcountry]);
+              initSpider(dataforspider[newcountry]);
     };
 
     var dropdown = d3.select(".spiderContainer")
