@@ -56,7 +56,7 @@ window.onload = function() {
       return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</br> Population: " + d.population + "</span>";
     })
 
-  d3.csv("data/HPI_2016.csv", function(error, data) {
+  d3.csv("HPI_2016.csv", function(error, data) {
     if (error) throw error;
 
     data.forEach(function(d) {
