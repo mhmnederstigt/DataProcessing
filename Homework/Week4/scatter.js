@@ -30,6 +30,7 @@ window.onload = function() {
       .range([height, 0]);
 
   var color = d3.scale.category10();
+  console.log(color);
 
   var xAxis = d3.svg.axis()
       .scale(x)
@@ -52,18 +53,21 @@ window.onload = function() {
     .style("padding",'12px')
     .style("border-radius",'12px')
     .html(function(d) {
-      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</span>";
+      return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</br> Population: " + d.population + "</span>";
     })
 
   d3.csv("data/HPI_2016.csv", function(error, data) {
     if (error) throw error;
 
-    
     data.forEach(function(d) {
-      d.population = +d.population;
       d.lifeExp = +d.lifeExp;
       d.GDPpcap = +d.GDPpcap;
     });
+
+    //sort from largest to smallest population to make circles accessible for mouse events
+    data = data.sort(function(b, a)  {
+      return a.population - b.population;
+    })
 
     svg.call(tip);
 
@@ -92,7 +96,6 @@ window.onload = function() {
         .style("text-anchor", "end")
         .text("Average life expectancy")
 
-
     svg.selectAll(".dot")
         .data(data)
       .enter().append("circle")
@@ -117,11 +120,47 @@ window.onload = function() {
         .style("fill", color);
 
     legend.append("text")
-        .attr("x", width - 24)
+        .attr("x", width - 30)
         .attr("y", 9)
         .attr("dy", ".35em")
         .style("text-anchor", "end")
         .text(function(d) { return d; });
 
-      });
+    ///// !! could be prettier
+    var legendPop = svg.selectAll(".legendPop")
+        //.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; }); width-50, height-50 ??
+        .data([0.5E8, 1.5E8, 4.5E8])
+      .enter().append("g")
+        .attr("class", "legend")
+        
+    legendPop.append("circle")
+        .attr("cx", width - circleSize(300003000))
+        .attr("cy", function(d) {return 400-circleSize(d); }) // how to not hard code this?
+        .attr("r", function(d) {return  circleSize(d); })
+        .style("fill", "none")
+        .style("stroke", "grey")
+        .style("stroke-width", "1")
+
+    legendPop.append("text")
+        .attr("x", width - 70)
+        .attr("dy", function(d) {return 400}) // how to not hard code this?
+        .style("text-anchor", "end")
+        .text("Population");
+
+    legendPop.append("text")
+        .attr("x", width - 60)
+        .attr("dy", function(d) {return 400-2*circleSize(d) - 2}) // how to not hard code this?
+        .style("text-anchor", "end")
+        .text(function(d) { return d3.format(",")(d) });
+
+    legendPop.append("line") // this is the black vertical line to follow mouse
+      .attr("class", "line")
+      .style("stroke", "grey")
+      .attr("x1", width - 130) // make this depend on the start of the label
+      .attr("x2", width - circleSize(300003000))
+      .attr("y1", function(d) {return 400-2*circleSize(d); }) // how to not hard code this?
+      .attr("y2", function(d) {return 400-2*circleSize(d); }) // how to not hard code this?
+      .style("stroke-width", "1px");
+
+    });
 };

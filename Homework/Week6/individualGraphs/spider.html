@@ -1,0 +1,42 @@
+<!--
+Milou Nederstigt - 2018-03-16 - Linked Graph Part 1
+Example taken from:
+https://bl.ocks.org/bricedev/7952923003a8cf0ecb45
+-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 10px sans-serif;
+  position: relative;
+  width: 960px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+</style>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="spider.js"></script>
+
+<body>
+<label><input type="checkbox"> Sort values</label>
+<div class='spiderContainer'>  </div>
+</body>
