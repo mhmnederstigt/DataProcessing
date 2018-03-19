@@ -30,7 +30,6 @@ window.onload = function() {
       .range([height, 0]);
 
   var color = d3.scale.category10();
-  console.log(color);
 
   var xAxis = d3.svg.axis()
       .scale(x)
