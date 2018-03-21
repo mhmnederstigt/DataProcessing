@@ -8,6 +8,7 @@ window.onload = function () {
   var color = d3.scale.ordinal()
       .range(["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6"]);
 
+  // sizes of both graphs, keep in mind screen size
   var margin = {top: 20, right: 20, bottom: 30, left: 20}
   var scatterWidth = 700 - margin.left - margin.right
   var scatterHeight = 500 - margin.top - margin.bottom
