@@ -1,0 +1,141 @@
+country,HPI,population,GDPpcap,lifeExp,region,footprint,wellbeing,renewableEnergy,hunger,qualityOfLife,purchasingPower,climate
+Afghanistan,20.2,29726803,691,59.7,Middle East and North Africa,0.8,34,17,65.2,,,
+Albania,36.8,2900489,4247,77.3,Post-communist,2.2,51,39,88.1,,,
+Algeria,33.3,37439427,5584,74.3,Middle East and North Africa,2.1,52,0,91.3,,,
+Argentina,35.2,42095224,14357,75.9,Americas,3.1,60,11,95,138.48,74.92,91.7
+Armenia,25.7,2978339,3566,74.4,Post-communist,2.2,37,8,91.3,,,
+Australia,21.2,22728254,67646,82.1,Asia Pacific,9.3,69,9,,198.79,147.25,77.33
+Austria,30.5,8429991,48324,81,Europe,6.1,71,36,,192.4,120.46,63.76
+Bangladesh,38.4,155257387,859,70.8,Asia Pacific,0.7,43,37,72.9,,,
+Belarus,21.7,9464000,6722,70.9,Post-communist,5.1,53,7,95,,,
+Belgium,23.7,11128246,44731,80.4,Europe,7.4,66,9,,162.29,106.69,76.97
+Belize,33.8,336707,4674,69.8,Americas,2.5,57,37,,,,
+Benin,13.4,10049792,808,59.2,Sub Saharan Africa,1.4,28,49,76.8,,,
+Bhutan,28.6,743711,2452,68.7,Asia Pacific,2.3,52,87,,,,
+Bolivia,23.3,10238762,2645,67.5,Americas,3,55,17,84.6,,,
+Bosnia and Herzegovina,25.3,3828419,4495,76.2,Post-communist,3.1,42,42,95,146.7,60.64,75.31
+Botswana,16.6,2132822,6936,64.2,Sub Saharan Africa,3.8,43,29,77,,,
+Brazil,34.3,202401584,12157,73.9,Americas,3.1,63,42,95,101.02,48.69,72.6
+Bulgaria,20.4,7305888,7333,73.9,Post-communist,3.3,37,17,91.7,141.61,59.19,77.8
+Burkina Faso,17.9,16590813,673,58,Sub Saharan Africa,1.2,36,76,69,,,
+Burundi,15.6,10124572,244,55.8,Sub Saharan Africa,0.8,30,90,,,,
+Cambodia,25.6,14832255,946,67.5,Asia Pacific,1.2,35,68,78.3,,,
+Cameroon,16.7,21659488,1222,54.6,Sub Saharan Africa,1.2,37,77,77.1,,,
+Canada,23.9,34751476,52738,81.7,Americas,8.2,71,23,,177.23,134.81,46.23
+Chad,12.8,12715465,973,50.8,Sub Saharan Africa,1.5,37,89,55.7,,,
+Chile,31.7,17388437,15253,81.1,Americas,4.4,61,26,95,147.26,78.4,85.68
+China,25.7,1350695000,6265,75.4,Asia Pacific,3.4,46,17,92.3,99.03,77.42,46.59
+Colombia,40.7,46881018,7885,73.7,Americas,1.9,57,25,91.5,128.46,45.99,84.51
+Comoros,23.1,733661,750,62.6,Sub Saharan Africa,1,37,46,,,,
+Costa Rica,44.7,4654148,9733,79.1,Americas,2.8,68,38,95,,,
+Cote d'Ivoire,14.4,21102641,1281,50.8,Sub Saharan Africa,1.3,35,71,74.3,,,
+Croatia,30.2,4267558,13236,77,Post-communist,3.9,55,34,95,172.39,67.89,85.64
+Cyprus,30.7,1129303,28868,79.8,Europe,4.2,57,9,,,,
+Czech Republic,27.3,10510785,19641,78.2,Post-communist,5.2,59,13,,167.38,89.99,63.48
+Denmark,32.7,5591572,57636,79.8,Europe,5.5,72,30,,206.49,142.14,70.65
+Djibouti,16.4,853069,1587,61.3,Sub Saharan Africa,2.2,38,34,67.3,,,
+Dominican Republic,30.3,10155036,5967,73.1,Americas,1.5,41,18,88.9,,,
+Ecuador,37,15419493,5702,75.4,Americas,2.2,55,12,86.1,,,
+Egypt,23.8,85660902,3226,70.7,Middle East and North Africa,2.2,37,6,86.3,88.79,40.3,79.72
+El Salvador,35.6,6072233,3922,72.5,Americas,2.1,53,28,88.8,,,
+Estonia,17.9,1322696,17491,76.2,Post-communist,6.9,50,25,95,,,
+Ethiopia,26.7,92191211,470,62.8,Sub Saharan Africa,1,42,93,66.6,,,
+Finland,31.3,5413971,47416,80.4,Europe,5.9,72,41,,184.01,132.93,32.56
+France,30.4,65639975,40850,81.8,Europe,5.1,63,13,,173.56,118.51,78.3
+Gabon,17.5,1613489,10642,63.3,Sub Saharan Africa,2,35,81,88,,,
+Georgia,31.1,3825000,4143,74.6,Post-communist,1.6,38,32,91.8,,,
+Germany,29.8,80425823,44011,80.6,Europe,5.3,64,13,,199.7,147.61,63.02
+Ghana,21.4,25544565,1642,61,Sub Saharan Africa,2,46,45,86.1,,,
+Greece,23.6,11045011,22243,80.5,Europe,4.4,45,16,,165.43,79.27,87.14
+Guatemala,34.2,15368759,3279,71.4,Americas,1.9,52,60,79.3,,,
+Guinea,15.9,11628767,487,57.7,Sub Saharan Africa,1.4,33,80,71.9,,,
+Haiti,28.6,10288828,767,62.1,Americas,0.6,40,78,63.1,,,
+Honduras,27.2,7736131,2395,72.8,Americas,1.7,39,54,86.8,,,
+Hong Kong,16.8,7154600,36708,83.6,Asia Pacific,8.8,51,2,,108.33,102.32,39.9
+Hungary,26.4,9920362,12820,74.9,Post-communist,2.9,42,10,,140.74,56.3,66.89
+Iceland,31.1,320716,44259,82.2,Europe,6.4,74,76,,,,
+India,29.2,1263589639,1450,67.3,Asia Pacific,1.2,42,37,71.5,109.28,89.65,19.66
+Indonesia,35.7,248037853,3701,68.5,Asia Pacific,1.6,51,38,78.1,72.19,35.51,7.98
+Iran,24,76156975,7711,74.8,Middle East and North Africa,2.8,40,1,93.3,96.93,47.73,74.61
+Iraq,26.5,32780975,6649,69,Middle East and North Africa,1.9,43,1,78,,,
+Ireland,30,4586897,48977,80.5,Europe,5.6,67,8,,171.92,125.66,73.07
+Israel,28.8,7910500,32819,81.9,Middle East and North Africa,6.2,68,9,,166.63,115.54,81.89
+Italy,28.1,59539717,34844,82.7,Europe,4.6,53,17,,159.28,105.67,86.19
+Jamaica,36.9,2707805,5446,75.3,Americas,1.9,50,16,92.1,,,
+Japan,28.3,127561489,46679,83.2,Asia Pacific,5,56,6,,176.06,117.55,79.64
+Kazakhstan,19.1,16791425,12120,68.6,Post-communist,5.6,54,1,92.2,,,
+Kenya,24.2,42542978,1185,60.3,Sub Saharan Africa,1,41,76,78.1,,,
+Kyrgyzstan,33.1,5607200,1178,69.7,Post-communist,1.9,49,NAN,90.9,,,
+Latvia,17.1,2034319,13775,73.6,Post-communist,6.3,47,40,95,,,
+Lebanon,21.9,4440728,9729,78.8,Middle East and North Africa,3.8,40,3,92.9,,,
+Lesotho,16.7,2057331,1159,48.9,Sub Saharan Africa,1.7,43,52,77.3,,,
+Liberia,22.2,4190155,414,60.2,Sub Saharan Africa,1.2,41,90,69.3,,,
+Lithuania,21,2987773,14343,72.8,Post-communist,5.8,54,28,95,134.33,61.25,24.42
+Luxembourg,13.2,530946,105447,81.1,Europe,15.8,67,7,,,,
+Macedonia,23.4,2069270,4710,75.1,Post-communist,3.3,41,18,94.2,115.03,46.74,80.55
+Malawi,22.1,15700436,270,60.1,Sub Saharan Africa,0.8,35,81,73.1,,,
+Malaysia,30.3,29021940,10835,74.4,Asia Pacific,3.7,57,5,90.3,,,
+Malta,29,419455,21176,80.2,Europe,4.4,55,4,,,,
+Mauritania,18,3777067,1283,62.6,Sub Saharan Africa,2.5,45,33,77.9,,,
+Mauritius,27.4,1255882,9114,74,Sub Saharan Africa,3.5,51,11,86.8,,,
+Mexico,40.7,122070963,9703,76.4,Americas,2.9,68,10,92.8,137.01,76.51,58.78
+Mongolia,14.3,2808339,4377,68.6,Asia Pacific,6.1,46,NAN,86.2,,,
+Montenegro,25.1,620601,6587,75.8,Post-communist,3.8,46,46,95,,,
+Morocco,32.7,32984190,2931,73.4,Middle East and North Africa,1.7,45,12,90.7,,,
+Mozambique,23.7,25732928,565,54.3,Sub Saharan Africa,0.9,45,89,68.3,,,
+Myanmar,24.7,52543841,1421,65.5,Asia Pacific,1.4,40,69,78,,,
+Namibia,21.6,2291645,5680,64,Sub Saharan Africa,2.5,44,28,68.6,,,
+Nepal,30.5,27500515,685,68.8,Asia Pacific,1,38,84,78.1,,,
+Netherlands,35.3,16754962,49475,81.2,Europe,5.3,75,6,,192.4,129.34,76.28
+New Zealand,31.3,4408100,39505,81.4,Asia Pacific,5.6,69,31,,201.06,115.47,88.35
+Nicaragua,38.7,5877034,1780,74.3,Americas,1.4,48,52,86.7,,,
+Niger,16.8,17635782,394,60,Sub Saharan Africa,1.6,35,78,66.3,,,
+Nigeria,22.2,168240403,2740,52.1,Sub Saharan Africa,1.2,52,87,74.5,,,
+Norway,36.8,5018573,101564,81.3,Europe,5,74,57,,188.9,125.75,56.33
+Oman,21.1,3545192,21534,76.3,Middle East and North Africa,7.5,64,0,89.6,,,
+Pakistan,31.5,177392252,1266,65.7,Asia Pacific,0.8,46,47,66.6,93.99,43.34,41.17
+Palestine,34.5,4046901,2783,72.6,Middle East and North Africa,1.2,41,NAN,,,,
+Panama,39.5,3743761,10139,77.2,Americas,2.8,63,20,90.7,,,
+Paraguay,23.3,6379162,3858,72.6,Americas,4.2,55,63,89.6,,,
+Peru,34.6,30158768,6389,74.1,Americas,2.3,53,26,91.4,,,
+Philippines,35,96017322,2605,67.9,Asia Pacific,1.1,44,29,80.1,,,
+Poland,27.5,38063164,13142,76.9,Post-communist,4.4,55,12,,153.61,80.77,64.33
+Portugal,24.8,10514844,20577,80.3,Europe,3.9,43,30,,181.18,75.47,91.7
+Republic of Congo,18.8,4286188,3191,61,Sub Saharan Africa,1.3,34,62,,,,
+Romania,28.8,20058035,8577,74.3,Post-communist,2.7,46,24,94.5,146.13,61.9,66.96
+Russia,18.7,143201676,14079,69.5,Post-communist,5.7,52,3,93.2,88.31,57.42,10.87
+Rwanda,19.6,10817350,667,63.1,Sub Saharan Africa,0.9,30,88,72.6,,,
+Senegal,21.9,13780108,1019,65.4,Sub Saharan Africa,1.2,33,43,83.5,,,
+Serbia,29,7199077,5659,74.5,Post-communist,2.7,46,23,92.9,138.26,49.62,83.89
+Sierra Leone,15.3,6043157,619,49.8,Sub Saharan Africa,1.2,40,73,65,,,
+Slovakia,28.2,5407579,17207,75.9,Post-communist,4.1,54,12,94.7,,,
+Slovenia,24.6,2057159,22478,80,Post-communist,5.8,57,23,,175.93,89.76,62.46
+South Africa,15.9,52341695,7592,56.3,Sub Saharan Africa,3.3,46,17,,156.7,126.1,91.42
+South Korea,24.8,50004441,24454,81.3,Asia Pacific,5.7,55,NAN,,170.29,120.64,51.35
+Spain,36,46773055,28648,82.2,Europe,3.7,59,17,,186.41,105.31,90.8
+Sri Lanka,33.8,20424000,3351,74.6,Asia Pacific,1.3,38,58,74.5,,,
+Suriname,25.4,528535,9422,70.8,Americas,4.3,59,25,89.9,,,
+Swaziland,15.5,1231694,3989,48.9,Sub Saharan Africa,2,44,64,75.8,,,
+Sweden,28,9519374,57134,81.8,Europe,7.3,74,50,,185.81,128.22,61.8
+Switzerland,34.3,7996861,83209,82.6,Europe,5.8,76,23,,208.54,178.74,70.5
+Syria,19.1,21427155,2080,70.4,Middle East and North Africa,1.5,26,NAN,,,,
+Tajikistan,34.2,7930929,962,69,Post-communist,0.9,43,41,70,,,
+Tanzania,22.1,48645709,828,63.5,Sub Saharan Africa,1.3,36,87,71.6,,,
+Thailand,37.3,67164130,5918,74.1,Asia Pacific,2.7,60,24,88.2,,,
+Togo,13.2,6745581,580,58.6,Sub Saharan Africa,1.1,24,73,77.6,,,
+Trinidad and Tobago,15.7,1341579,18322,70.1,Americas,7.9,60,0,91.5,,,
+Tunisia,26.2,10777500,4188,74.6,Middle East and North Africa,2.3,40,13,94.5,,,
+Turkey,26.4,74099255,10646,74.7,Middle East and North Africa,3.3,49,12,95,137.31,64.12,74.22
+Turkmenistan,14.6,5172941,6798,65.3,Post-communist,5.5,51,0,87.7,,,
+Uganda,19.4,35400620,656,57.1,Sub Saharan Africa,1.2,39,89,73.6,,,
+Ukraine,26.4,45593300,3855,70.3,Post-communist,2.8,46,3,95,85.56,29.66,50.4
+United Kingdom,31.9,63700300,41295,80.4,Europe,4.9,66,7,,180.25,120,81.6
+United States of America,20.7,314112078,51457,78.8,Americas,8.2,65,9,,183.96,139.17,67.57
+Uruguay,36.1,3396753,15128,76.9,Americas,2.9,58,55,94.4,,,
+Uzbekistan,29.1,29774500,1719,68.2,Post-communist,2.3,56,3,86.9,,,
+Vanuatu,40.6,247498,3158,71.3,Asia Pacific,1.9,59,32,93,,,
+Venezuela,33.6,29854238,12772,73.9,Americas,3.6,65,12,,,,
+Vietnam,40.3,88809200,1755,75.5,Asia Pacific,1.7,52,36,85.5,,,
+Yemen,22.8,24882792,1289,63.3,Middle East and North Africa,1,36,1,65,,,
+Zambia,25.2,14786581,1687,58.4,Sub Saharan Africa,1,45,88,61,,,
+Zimbabwe,22.1,14565482,851,53.7,Sub Saharan Africa,1.4,46,81,71.2,,,
