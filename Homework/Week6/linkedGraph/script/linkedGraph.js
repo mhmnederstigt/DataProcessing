@@ -14,8 +14,8 @@ window.onload = function () {
   var scatterHeight = 500 - margin.top - margin.bottom
 
   var radialWidth = 350
-  var radialHeight = 500
-  var barHeight = radialHeight / 2 - 120
+  var radialHeight = 450
+  var barHeight = radialHeight / 2 - 80
 
   var svg = d3.select(".radialbarContainer").append("svg")
       .attr("width", radialWidth)
@@ -257,20 +257,6 @@ function initRadialBar(data){
     svg.append("g")
         .attr("class", "x axis")
         .call(xAxis)
-
-    //create legend for no data
-    var noData = d3.select(".noData")
-        .append("rect")
-        .attr("x", 10)
-        .attr("y", 10)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", "#000000")
-
-    noData.append("text")
-        .attr("x", 20)
-        .attr("y", 9)
-        .text("No data")
 
    updateRadialBar(data)
   };
