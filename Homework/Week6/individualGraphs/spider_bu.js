@@ -249,6 +249,8 @@ function updateSpider(data){
     // Labels
     var labelRadius = barHeight * 1.025;
 
+    d3.select(".labels").remove()
+
     var labels = svg.append("g")
         .classed("labels", true);
 

@@ -24,18 +24,18 @@ window.onload = function () {
       .attr("transform", "translate(" + radialWidth/2 + "," + radialHeight/2 + ")")
 
   // specify which variables from the datasheet should appear in the radial bar graph
-  var variablesPlotted = ["hunger", "wellbeing", "renewableEnergy"]
+  var variablesPlotted = ["hunger", "wellbeing", "renewableEnergy", "purchasingPower"]
 
   d3.csv("data/linkedGraphData.csv", function(error, data) {
     // rewrite data for radialbar to format: [{name: "wellbeing", value: "1"}, {name: "footprint", value: "1"}, {name: "ren", value: "1"}] 
-    var dataRadialBar = []
+    var dataforradialbar = []
     data.forEach(function(d) {
         var country = d.country;
-        dataRadialBar[country] = []
+        dataforradialbar[country] = []
         
         var list = []
         variablesPlotted.forEach(function(field) {
-            dataRadialBar[country].push({
+            dataforradialbar[country].push({
                 name:   field,
                 value: +d[field]
             })
@@ -43,9 +43,9 @@ window.onload = function () {
     });
 
     // init radialbar with initData    
-    countrys = Object.keys(dataRadialBar)
-    initDataradialbar = dataRadialBar[countrys[0]]
-    initRadialBar(initDataradialbar)
+    countrys = Object.keys(dataforradialbar)
+    initDataradialbar =  dataforradialbar[countrys[0]]
+    initradialbar(initDataradialbar)
 
     // init scatterplot
     function circleSize(population) {
@@ -77,7 +77,7 @@ window.onload = function () {
         .attr("width", scatterWidth + margin.left + margin.right)
         .attr("height", scatterHeight + margin.top + margin.bottom)
       .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     var tip = d3.tip()
       .attr('class', 'tooltip')
@@ -89,73 +89,73 @@ window.onload = function () {
         return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</br> Population: " + d.population + "</span>";
       })
 
-    data.forEach(function(d) {
-      d.lifeExp = +d.lifeExp;
-      d.GDPpcap = +d.GDPpcap;
-    });
+      data.forEach(function(d) {
+        d.lifeExp = +d.lifeExp;
+        d.GDPpcap = +d.GDPpcap;
+      });
 
-    //sort from largest to smallest population to make circles accessible for mouse events
-    data = data.sort(function(b, a)  {
-      return a.population - b.population
-    })
+      //sort from largest to smallest population to make circles accessible for mouse events
+      data = data.sort(function(b, a)  {
+        return a.population - b.population;
+      })
 
-    svg.call(tip)
+      svg.call(tip);
 
-    x.domain(d3.extent(data, function(d) { return d.GDPpcap; })).nice()
-    y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice()
+      x.domain(d3.extent(data, function(d) { return d.GDPpcap; })).nice();
+      y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice();
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + scatterHeight + ")")
-        .call(xAxis)
-      .append("text")
-        .attr("class", "label")
-        .attr("x", scatterWidth)
-        .attr("y", -6)
-        .style("text-anchor", "end")
-        .text("GDP per capita ($)");
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + scatterHeight + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", scatterWidth)
+          .attr("y", -6)
+          .style("text-anchor", "end")
+          .text("GDP per capita ($)");
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-      .append("text")
-        .attr("class", "label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Average life expectancy")
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Average life expectancy")
 
-    svg.selectAll(".dot")
-        .data(data)
-      .enter().append("circle")
-        .attr("class", "dot")
-        .attr("r", function(d) { return circleSize(d.population)}) 
-        .attr("cx", function(d) { return x(d.GDPpcap); })
-        .attr("cy", function(d) { return y(d.lifeExp); })
-        .style("fill", function(d) { return color(d.region); })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
-        .on('click', function(d){ updateRadialBar(dataRadialBar[d.country]); titleDisplay(d.country)})
+      svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", function(d) { return circleSize(d.population)}) 
+          .attr("cx", function(d) { return x(d.GDPpcap); })
+          .attr("cy", function(d) { return y(d.lifeExp); })
+          .style("fill", function(d) { return color(d.region); })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
+          .on('click', function(d){ updateradialbar(dataforradialbar[d.country]); titleDisplay(d.country)})
 
-    var legend = svg.selectAll(".legend")
-        .data(color.domain())
-      .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
+      var legend = svg.selectAll(".legend")
+          .data(color.domain())
+        .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-    legend.append("rect")
-        .attr("x", scatterWidth - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", color)
+      legend.append("rect")
+          .attr("x", scatterWidth - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", color);
 
-    legend.append("text")
-        .attr("x", scatterWidth - 30)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text(function(d) { return d; })
+      legend.append("text")
+          .attr("x", scatterWidth - 30)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d; });
 
       var minPop = Math.round(d3.min(data, function(d) { return d.population}) *5/10000000)*10000000
       var maxPop = Math.round(d3.max(data, function(d) { return d.population}) *30/10000000)*10000000
@@ -179,13 +179,13 @@ window.onload = function () {
           .attr("x", scatterWidth - 70)
           .attr("dy", function(d) {return scatterHeight - 2 * margin.top}) 
           .style("text-anchor", "end")
-          .text("Population")
+          .text("Population");
 
       legendPop.append("text")
           .attr("x", scatterWidth - 60)
           .attr("dy", function(d) {return scatterHeight - 2 * margin.top-2*circleSize(d) - 2}) 
           .style("text-anchor", "end")
-          .text(function(d) { return d3.format(",")(d) })
+          .text(function(d) { return d3.format(",")(d) });
 
       legendPop.append("line") 
         .attr("class", "line")
@@ -194,21 +194,21 @@ window.onload = function () {
         .attr("x2", scatterWidth - 45)
         .attr("y1", function(d) {return scatterHeight - 2 * margin.top-2*circleSize(d); })
         .attr("y2", function(d) {return scatterHeight - 2 * margin.top-2*circleSize(d); })
-        .style("stroke-width", "1px")
+        .style("stroke-width", "1px");
   });
             
-function initRadialBar(data){
+function initradialbar(data){
 // right data format: [{name: "variable1", value: "1"}, {name: "variable2", value: "1"}, {name: "variable3", value: "1"}] 
     var barScale = d3.scale.linear()
         .domain([0, d3.max(data, function(d) { return d.value; })])
-        .range([0, barHeight])
+        .range([0, barHeight]);
 
-    var keys = data.map(function(d,i) { return d.name; })
-    var numBars = keys.length
+    var keys = data.map(function(d,i) { return d.name; });
+    var numBars = keys.length;
 
     var x = d3.scale.linear()
         .domain([0, d3.max(data, function(d) { return d.value; })])
-        .range([0, -barHeight])
+        .range([0, -barHeight]);
 
     var xAxis = d3.svg.axis()
         .scale(x).orient("left")
@@ -222,29 +222,29 @@ function initRadialBar(data){
         .style("fill", "none")
         .style("stroke", "black")
         .style("stroke-dasharray", "2,2")
-        .style("stroke-width",".5px")
+        .style("stroke-width",".5px");
 
-    var arc = d3.svg.arc()
+    var arc = d3.svg.arc();
 
     var segments = svg.selectAll("path")
         .data(data)
       .enter().append("path")
         .each(function(d,i) { 
           d.innerRadius = 0;
-          d.outerRadius = barScale(d.value); 
+          d.outerRadius = barScale(+d.value); 
           d.startAngle = (i * 2 * Math.PI) / numBars;
-          d.endAngle = ((i + 1) * 2 * Math.PI) / numBars
+          d.endAngle = ((i + 1) * 2 * Math.PI) / numBars;
       })
-      .style("fill", function (d) { return color(d.name)})
+      .style("fill", function (d) { return color(d.name); })
       .style("opacity", 0.5)
-      .attr("d", arc)
+      .attr("d", arc);
 
     svg.append("circle")
       .attr("r", barHeight)
       .classed("outer", true)
       .style("fill", "none")
       .style("stroke", "black")
-      .style("stroke-width","1.5px")
+      .style("stroke-width","1.5px");
 
     var lines = svg.selectAll("line")
         .data(keys)
@@ -252,67 +252,81 @@ function initRadialBar(data){
         .attr("y2", -barHeight - 20)
         .style("stroke", "black")
         .style("stroke-width",".5px")
-        .attr("transform", function(d, i) { return "rotate(" + (i * 360 / numBars) + ")"; })
+        .attr("transform", function(d, i) { return "rotate(" + (i * 360 / numBars) + ")"; });
 
     svg.append("g")
         .attr("class", "x axis")
-        .call(xAxis)
+        .call(xAxis);
 
-    //create legend for no data
-    var noData = d3.select(".noData")
-        .append("rect")
-        .attr("x", 10)
-        .attr("y", 10)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", "#000000")
+    var labelRadius = barHeight * 1.025;
 
-    noData.append("text")
-        .attr("x", 20)
-        .attr("y", 9)
-        .text("No data")
+    var labels = svg.append("g")
+        .classed("labels", true);
 
-   updateRadialBar(data)
+    labels.append("def")
+        .append("path")
+        .attr("id", "label-path")
+        .attr("d", "m0 " + -labelRadius + " a" + labelRadius + " " + labelRadius + " 0 1,1 -0.01 0");
+
+    labels.selectAll("text")
+        .data(data)
+        .enter().append("text")
+        .style("text-anchor", "middle")
+        .style("font-weight","bold")
+        .style("font-size", '12')
+        .style("fill", function(d, i) {return "#3e3e3e";})
+        .append("textPath")
+        .attr("class","textpath")
+        .attr("xlink:href", "#label-path")
+        .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%';})
+        .text(function(d) {return d.name.toUpperCase(); });
+
+    //sort in ascending order
+    function change() {
+        if (this.checked) {
+            labels.selectAll(".textpath").sort(function(a,b) { return b.value - a.value; });
+            segments.sort(function(a,b) { return b.value - a.value; });
+
+        }else {
+            labels.selectAll(".textpath").sort(function(a,b) { return d3.ascending(a.name, b.name) });
+            segments.sort(function(a,b) { return d3.ascending(a.name, b.name); });
+        }; 
+
+        segments.transition().duration(2000).delay(100)
+            .attrTween("d", function(d,index) {
+              var i = d3.interpolate(d.startAngle, (index * 2 * Math.PI) / numBars );
+              var u = d3.interpolate(d.endAngle, ((index + 1) * 2 * Math.PI) / numBars );
+              return function(t) { d.endAngle = u(t); d.startAngle = i(t); return arc(d,index); };
+            });
+
+        labels.selectAll(".textpath").transition().duration(2000).delay(100)
+            .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%'; })
+    }
+
+    d3.select("input").on("change", change);
+   
   };
 
-  function updateRadialBar(data){
+  function updateradialbar(data){
     var barScale = d3.scale.linear()
         .domain([0, d3.max(data, function(d) { return d.value; })])
-        .range([0, barHeight])
+        .range([0, barHeight]);
 
-    var keys = data.map(function(d,i) { return d.name; })
-    var numBars = keys.length
+    var keys = data.map(function(d,i) { return d.name; });
+    var numBars = keys.length;
 
-    var arc = d3.svg.arc()
-
-    // check for empty entry when updating graph
-    function checkEntry(value) { 
-      if (value > 0) {
-        return barScale(+value)
-      }
-      else {
-        return Number("130")
-      }
-    }
-
-    function checkColor(d) { 
-      if (d.value > 0) {
-          return color(d.name)
-        }
-        else {
-          return "#000000"}
-    }
+    var arc = d3.svg.arc();
 
     var segments = svg.selectAll("path")  
         .data(data)
         .each(function(d,i) { 
           d.innerRadius = 0;
-          d.outerRadius = checkEntry(d.value); 
+          d.outerRadius = barScale(+d.value); 
           d.startAngle = (i * 2 * Math.PI) / numBars;
           d.endAngle = ((i + 1) * 2 * Math.PI) / numBars;
       })
-      .style("fill", function (d) { return checkColor(d); })
-      .attr("d", arc)
+      .style("fill", function (d) { return color(d.name); })
+      .attr("d", arc);
 
     var x = d3.scale.linear()
         .domain([0, d3.max(data, function(d) { return d.value; })])
@@ -336,64 +350,14 @@ function initRadialBar(data){
   
     var x = d3.scale.linear()
         .domain([0, d3.max(data, function(d) { return d.value; })])
-        .range([0, -barHeight])
+        .range([0, -barHeight]);
 
     var xAxis = d3.svg.axis()
         .scale(x).orient("left")
         .ticks(5)
 
     svg.select(".x.axis").transition()
-        .call(xAxis)
+        .call(xAxis);
 
-    var labelRadius = barHeight * 1.025
-
-    d3.select(".labels").remove()
-
-    var labels = svg.append("g")
-        .classed("labels", true)
-
-    labels.append("def")
-        .append("path")
-        .attr("id", "label-path")
-        .attr("d", "m0 " + -labelRadius + " a" + labelRadius + " " + labelRadius + " 0 1,1 -0.01 0");
-
-    labels.selectAll("text")
-        .data(data)
-        .enter().append("text")
-        .style("text-anchor", "middle")
-        .style("font-weight","bold")
-        .style("font-size", '12')
-        .style("fill", function(d, i) {return "#3e3e3e";})
-        .append("textPath")
-        .attr("class","textpath")
-        .attr("xlink:href", "#label-path")
-        .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%';})
-        .text(function(d) {return d.name.toUpperCase(); })
-
-    d3.select("input").on("change", radialChange)
-
-    //sort in ascending order
-    function radialChange() {
-        if (this.checked) {
-            labels.selectAll(".textpath").sort(function(a,b) { return b.value - a.value; });
-            segments.sort(function(a,b) { return b.value - a.value; });
-
-        }else {
-            labels.selectAll(".textpath").sort(function(a,b) { return d3.ascending(a.name, b.name) });
-            segments.sort(function(a,b) { return d3.ascending(a.name, b.name); })
-        } 
-
-        segments.transition().duration(2000).delay(100)
-            .attrTween("d", function(d,index) {
-              var i = d3.interpolate(d.startAngle, (index * 2 * Math.PI) / numBars );
-              var u = d3.interpolate(d.endAngle, ((index + 1) * 2 * Math.PI) / numBars );
-              return function(t) { d.endAngle = u(t); d.startAngle = i(t); return arc(d,index); };
-            });
-
-        labels.selectAll(".textpath").transition().duration(2000).delay(100)
-            .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%'; })
-    }
-
-    
   };
 };        

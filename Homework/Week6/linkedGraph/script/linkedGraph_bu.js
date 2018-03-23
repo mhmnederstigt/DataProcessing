@@ -8,30 +8,30 @@ window.onload = function () {
   var color = d3.scale.ordinal()
       .range(["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6"]);
 
-  // sizes of both graphs, keep in mind screen size
+  // sizes of both graphs, keep in mind screen size!
   var margin = {top: 20, right: 20, bottom: 30, left: 20}
   var scatterWidth = 700 - margin.left - margin.right
   var scatterHeight = 500 - margin.top - margin.bottom
 
   var radialWidth = 350
   var radialHeight = 500
-  var barHeight = radialHeight / 2 - 120;
+  var barHeight = radialHeight / 2 - 120
 
   var svg = d3.select(".radialbarContainer").append("svg")
       .attr("width", radialWidth)
       .attr("height", radialHeight)
     .append("g")
-      .attr("transform", "translate(" + radialWidth/2 + "," + radialHeight/2 + ")");
+      .attr("transform", "translate(" + radialWidth/2 + "," + radialHeight/2 + ")")
 
   // specify which variables from the datasheet should appear in the radial bar graph
-  var variablesPlotted = ["hunger", "wellbeing", "renewableEnergy"];
+  var variablesPlotted = ["hunger", "wellbeing", "renewableEnergy", "purchasingPower"]
 
   d3.csv("data/linkedGraphData.csv", function(error, data) {
     // rewrite data for radialbar to format: [{name: "wellbeing", value: "1"}, {name: "footprint", value: "1"}, {name: "ren", value: "1"}] 
-    var dataforradialbar = [];
+    var dataforradialbar = []
     data.forEach(function(d) {
         var country = d.country;
-        dataforradialbar[country] = [];
+        dataforradialbar[country] = []
         
         var list = []
         variablesPlotted.forEach(function(field) {
@@ -44,12 +44,12 @@ window.onload = function () {
 
     // init radialbar with initData    
     countrys = Object.keys(dataforradialbar)
-    initDataradialbar =  dataforradialbar[countrys[0]];
-    initradialbar(initDataradialbar);
+    initDataradialbar =  dataforradialbar[countrys[0]]
+    initradialbar(initDataradialbar)
 
     // init scatterplot
     function circleSize(population) {
-      return (Math.sqrt(population/70000/Math.PI)+0.5);
+      return (Math.sqrt(population/70000/Math.PI)+0.5)
     }
 
     function titleDisplay(country) {
@@ -58,20 +58,20 @@ window.onload = function () {
     }
 
     var x = d3.scale.log()
-        .range([0, scatterWidth]);
+        .range([0, scatterWidth])
 
     var y = d3.scale.linear()
-        .range([scatterHeight, 0]);
+        .range([scatterHeight, 0])
 
-    var color = d3.scale.category10();
+    var color = d3.scale.category10()
 
     var xAxis = d3.svg.axis()
         .scale(x)
-        .orient("bottom");
+        .orient("bottom")
 
     var yAxis = d3.svg.axis()
         .scale(y)
-        .orient("left");
+        .orient("left")
 
     var svg = d3.select(".scatterContainer").append("svg")
         .attr("width", scatterWidth + margin.left + margin.right)
@@ -157,13 +157,13 @@ window.onload = function () {
           .style("text-anchor", "end")
           .text(function(d) { return d; });
 
-      var min = Math.round(d3.min(data, function(d) { return d.population}) *5/10000000)*10000000
-      var max = Math.round(d3.max(data, function(d) { return d.population}) *30/10000000)*10000000
-      var middle = Math.round(max * 5/9/10000000)*10000000
+      var minPop = Math.round(d3.min(data, function(d) { return d.population}) *5/10000000)*10000000
+      var maxPop = Math.round(d3.max(data, function(d) { return d.population}) *30/10000000)*10000000
+      var middlePop = Math.round(maxPop * 5/9/10000000)*10000000
 
       var legendPop = svg.selectAll(".legendPop")
           //.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; }); width-50, height-50 ??
-          .data([min, middle, max])
+          .data([minPop, middlePop, maxPop])
         .enter().append("g")
           .attr("class", "legend")
           
@@ -281,8 +281,6 @@ function initradialbar(data){
         .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%';})
         .text(function(d) {return d.name.toUpperCase(); });
 
-    d3.select("input").on("change", change);
-
     //sort in ascending order
     function change() {
         if (this.checked) {
@@ -304,6 +302,9 @@ function initradialbar(data){
         labels.selectAll(".textpath").transition().duration(2000).delay(100)
             .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%'; })
     }
+
+    d3.select("input").on("change", change);
+   
   };
 
   function updateradialbar(data){

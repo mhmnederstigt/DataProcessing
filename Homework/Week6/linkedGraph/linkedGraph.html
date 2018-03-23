@@ -5,16 +5,20 @@ Milou Nederstigt - 2018-03-21 - Linked Graph Final
 
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="stylescatter.css">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <link rel="stylesheet" type="text/css" href="stylescatter.css">
+    
     <script src="//d3js.org/d3.v3.min.js"></script>
-
     <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="script/linkedGraph.js"></script>
+    
+    
     <title> Final Assignment - Milou Nederstigt </title>
     
   </head>
@@ -25,14 +29,27 @@ Milou Nederstigt - 2018-03-21 - Linked Graph Final
       <p> Milou Nederstigt - 11022914 - 2018-03-21 </p>
       <p> Mimicking Hans Rosling's income/life expectancy comparison 2016 in combination with three pillars of sustainability per country</p> 
 
-      </div>
+    </div>
 
     <div class="container">
       <div class="row">
         <div class="col-sm-4" style="min-width: 350px;">
             <h2>Triple Bottom Line</h2>
+            
             <div class="titleBox">Afghanistan</div>
-            <label><input type="checkbox"> Sort values</label>
+            <li class="list-group-item">
+              Sort values
+              <div class="material-switch pull-right">
+                <input id="sortSwitch" type="checkbox"/>
+                <label for="sortSwitch" class="label-success"></label>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="noData">
+
+              </div>
+            </li>
+
             <div class='radialbarContainer'></div>
         </div>
         <div class="col-sm-8" style="min-width: 600px;">
@@ -43,8 +60,8 @@ Milou Nederstigt - 2018-03-21 - Linked Graph Final
       <div class="row">
         <div class="col-sm-12" style="min-width: 400px;">
           <h2>Pillars of sustainability</h2>
-          <p> The triple bottom line is a theory generally applied to sustainability thinking within companies. It is the most commonly used depiction of sustainability and poses that in pursuit of sustainable daily business three bottom lines, or in other words ‘pillars’, should be considered. The three pillars comprises a social and environmental factor (people and planet) and additionally a third factor that is the core driver of the system; in organizations the financial factor: profit. Therefore it has also been described as the ‘three P’s of sustainability’. In the figure above theory has been applied to a wider context: the pursuit of global sustainability.</p>
-          <p> Hans Rosling’s famous scatter plot on the right hand side indicates that there is a relationship between life expectancy and wellfare. One could argue that in pursuit of sustainability all three pillars of sustainability should be considered and effort should be put in the least supporting pillar. Information on those pillars it thus relevant. This model makes use of the indicators ‘hunger’, ‘renewable energy’ and ‘wellbeing’. </p>
+          <p> The triple bottom line is a theory generally applied to sustainability thinking within companies. It is the most commonly used depiction of sustainability and poses that in pursuit of sustainable daily business three bottom lines, or in other words &#39;pillars&#39;, should be considered. The three pillars comprises a social and environmental factor (people and planet) and additionally a third factor that is the core driver of the system; in organizations the financial factor: profit. Therefore it has also been described as the &#39;three P&#39;s of sustainability&#39;. In the figure above theory has been applied to a wider context: the pursuit of global sustainability.</p>
+          <p> Hans Rosling&#39;s famous scatter plot on the right hand side indicates that there is a relationship between life expectancy and wellfare. One could argue that in pursuit of sustainability all three pillars of sustainability should be considered and effort should be put in the least supporting pillar. Information on those pillars it thus relevant. This model makes use of the indicators &#39;hunger&#39;, &#39;renewable energy&#39; and &#39;wellbeing&#39;. </p>
           <p>For instance, within Europe Norway might be known for its high renewable energy production, however the renewable energy share (% of total production) is lower than how citizens rate their wellbeing. If people are generally happy, there should be room to improve more, right? Therefore it matters.</p>
         </div>
       </div>
@@ -52,7 +69,7 @@ Milou Nederstigt - 2018-03-21 - Linked Graph Final
         <div class="col-sm-12" style="min-width: 400px;">
           <h2>Variables</h2>
           <b>Hunger</b>
-          <p><a href="http://www.globalhungerindex.org/"> Global hunger index</a>, International Food Policy Research Institute (IFPRI) (for visualization purposes the index has been reversed, resulting in an index of 100 corresponds to the ‘best case’ situation and the lowest prevalance of hunger. </p>
+          <p><a href="http://www.globalhungerindex.org/"> Global hunger index</a>, International Food Policy Research Institute (IFPRI) (for visualization purposes the index has been reversed, resulting in an index of 100 corresponds to the &#39;best case&#39; situation and the lowest prevalance of hunger. </p>
           <b>Wellbeing</b>
           <p>Average wellbeing (orginal data on a scale from 1 to 10, multiplied by a factor 10 for visualization purposes)</p>
           <p>Source: From <a href="http://happyplanetindex.org/"> HPI 2016</a>: Ladder of Life question in the Gallup World Poll.  Latest data for each country as of 2012, except where noted in the Methodology paper.</p>

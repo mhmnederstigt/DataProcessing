@@ -89,73 +89,73 @@ window.onload = function () {
         return "<strong>" + d.country +"</strong> <span style='color:#3366cc'></br> GDP: " + d.GDPpcap + "</br> Life Exp.: " + d.lifeExp + "</br> Population: " + d.population + "</span>";
       })
 
-    data.forEach(function(d) {
-      d.lifeExp = +d.lifeExp;
-      d.GDPpcap = +d.GDPpcap;
-    });
+      data.forEach(function(d) {
+        d.lifeExp = +d.lifeExp;
+        d.GDPpcap = +d.GDPpcap;
+      });
 
-    //sort from largest to smallest population to make circles accessible for mouse events
-    data = data.sort(function(b, a)  {
-      return a.population - b.population
-    })
+      //sort from largest to smallest population to make circles accessible for mouse events
+      data = data.sort(function(b, a)  {
+        return a.population - b.population
+      })
 
-    svg.call(tip)
+      svg.call(tip)
 
-    x.domain(d3.extent(data, function(d) { return d.GDPpcap; })).nice()
-    y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice()
+      x.domain(d3.extent(data, function(d) { return d.GDPpcap; })).nice()
+      y.domain(d3.extent(data, function(d) { return d.lifeExp; })).nice()
 
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + scatterHeight + ")")
-        .call(xAxis)
-      .append("text")
-        .attr("class", "label")
-        .attr("x", scatterWidth)
-        .attr("y", -6)
-        .style("text-anchor", "end")
-        .text("GDP per capita ($)");
+      svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + scatterHeight + ")")
+          .call(xAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("x", scatterWidth)
+          .attr("y", -6)
+          .style("text-anchor", "end")
+          .text("GDP per capita ($)");
 
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-      .append("text")
-        .attr("class", "label")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .text("Average life expectancy")
+      svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis)
+        .append("text")
+          .attr("class", "label")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 6)
+          .attr("dy", ".71em")
+          .style("text-anchor", "end")
+          .text("Average life expectancy")
 
-    svg.selectAll(".dot")
-        .data(data)
-      .enter().append("circle")
-        .attr("class", "dot")
-        .attr("r", function(d) { return circleSize(d.population)}) 
-        .attr("cx", function(d) { return x(d.GDPpcap); })
-        .attr("cy", function(d) { return y(d.lifeExp); })
-        .style("fill", function(d) { return color(d.region); })
-        .on('mouseover', tip.show)
-        .on('mouseout', tip.hide)
-        .on('click', function(d){ updateRadialBar(dataRadialBar[d.country]); titleDisplay(d.country)})
+      svg.selectAll(".dot")
+          .data(data)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", function(d) { return circleSize(d.population)}) 
+          .attr("cx", function(d) { return x(d.GDPpcap); })
+          .attr("cy", function(d) { return y(d.lifeExp); })
+          .style("fill", function(d) { return color(d.region); })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
+          .on('click', function(d){ updateradialbar(dataRadialBar[d.country]); titleDisplay(d.country)})
 
-    var legend = svg.selectAll(".legend")
-        .data(color.domain())
-      .enter().append("g")
-        .attr("class", "legend")
-        .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
+      var legend = svg.selectAll(".legend")
+          .data(color.domain())
+        .enter().append("g")
+          .attr("class", "legend")
+          .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; })
 
-    legend.append("rect")
-        .attr("x", scatterWidth - 18)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", color)
+      legend.append("rect")
+          .attr("x", scatterWidth - 18)
+          .attr("width", 18)
+          .attr("height", 18)
+          .style("fill", color)
 
-    legend.append("text")
-        .attr("x", scatterWidth - 30)
-        .attr("y", 9)
-        .attr("dy", ".35em")
-        .style("text-anchor", "end")
-        .text(function(d) { return d; })
+      legend.append("text")
+          .attr("x", scatterWidth - 30)
+          .attr("y", 9)
+          .attr("dy", ".35em")
+          .style("text-anchor", "end")
+          .text(function(d) { return d; })
 
       var minPop = Math.round(d3.min(data, function(d) { return d.population}) *5/10000000)*10000000
       var maxPop = Math.round(d3.max(data, function(d) { return d.population}) *30/10000000)*10000000
@@ -231,11 +231,11 @@ function initRadialBar(data){
       .enter().append("path")
         .each(function(d,i) { 
           d.innerRadius = 0;
-          d.outerRadius = barScale(d.value); 
+          d.outerRadius = barScale(+d.value); 
           d.startAngle = (i * 2 * Math.PI) / numBars;
           d.endAngle = ((i + 1) * 2 * Math.PI) / numBars
       })
-      .style("fill", function (d) { return color(d.name)})
+      .style("fill", function (d) { return color(d.name); })
       .style("opacity", 0.5)
       .attr("d", arc)
 
@@ -258,24 +258,33 @@ function initRadialBar(data){
         .attr("class", "x axis")
         .call(xAxis)
 
-    //create legend for no data
-    var noData = d3.select(".noData")
-        .append("rect")
-        .attr("x", 10)
-        .attr("y", 10)
-        .attr("width", 18)
-        .attr("height", 18)
-        .style("fill", "#000000")
+    var labelRadius = barHeight * 1.025
 
-    noData.append("text")
-        .attr("x", 20)
-        .attr("y", 9)
-        .text("No data")
+    var labels = svg.append("g")
+        .classed("labels", true)
 
-   updateRadialBar(data)
+    labels.append("def")
+        .append("path")
+        .attr("id", "label-path")
+        .attr("d", "m0 " + -labelRadius + " a" + labelRadius + " " + labelRadius + " 0 1,1 -0.01 0");
+
+    labels.selectAll("text")
+        .data(data)
+        .enter().append("text")
+        .style("text-anchor", "middle")
+        .style("font-weight","bold")
+        .style("font-size", '12')
+        .style("fill", function(d, i) {return "#3e3e3e";})
+        .append("textPath")
+        .attr("class","textpath")
+        .attr("xlink:href", "#label-path")
+        .attr("startOffset", function(d,i) {return i * 100 / numBars + 50 / numBars + '%';})
+        .text(function(d) {return d.name.toUpperCase(); })
+   
   };
 
-  function updateRadialBar(data){
+  function updateradialbar(data){
+    console.log(data)
     var barScale = d3.scale.linear()
         .domain([0, d3.max(data, function(d) { return d.value; })])
         .range([0, barHeight])
@@ -285,33 +294,15 @@ function initRadialBar(data){
 
     var arc = d3.svg.arc()
 
-    // check for empty entry when updating graph
-    function checkEntry(value) { 
-      if (value > 0) {
-        return barScale(+value)
-      }
-      else {
-        return Number("130")
-      }
-    }
-
-    function checkColor(d) { 
-      if (d.value > 0) {
-          return color(d.name)
-        }
-        else {
-          return "#000000"}
-    }
-
     var segments = svg.selectAll("path")  
         .data(data)
         .each(function(d,i) { 
           d.innerRadius = 0;
-          d.outerRadius = checkEntry(d.value); 
+          d.outerRadius = barScale(+d.value); 
           d.startAngle = (i * 2 * Math.PI) / numBars;
           d.endAngle = ((i + 1) * 2 * Math.PI) / numBars;
       })
-      .style("fill", function (d) { return checkColor(d); })
+      .style("fill", function (d) { return color(d.name); })
       .attr("d", arc)
 
     var x = d3.scale.linear()
